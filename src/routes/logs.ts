@@ -1,12 +1,6 @@
 import express, { Request, Response } from "express";
+import { LogRequest } from "../interfaces/logs";
 const router = express.Router();
-
-// Define the type for the request body
-interface LogRequest {
-    Message: string;
-    StackFrame: string;
-    Type: string;
-}
 
 // Define a route for /api/logs
 router.post("/", (req: Request<{}, {}, LogRequest>, res: Response) => {

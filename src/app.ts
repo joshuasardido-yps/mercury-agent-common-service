@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import ingenicoRoutes from './routes/ingenico/ingenico';
-import kioskRoutes from './routes/kiosk/kiosk';
-import logsRoutes from './routes/logs/logs';
-import metricsRoutes from './routes/metrics/metrics';
+import ingenicoRoutes from './routes/ingenico';
+import kioskRoutes from './routes/kiosk';
+import logsRoutes from './routes/logs';
+import metricsRoutes from './routes/metrics';
 
 const app = express();
 const PORT = 5050;

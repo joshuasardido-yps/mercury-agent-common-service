@@ -1,21 +1,6 @@
 import express, { Request, Response } from 'express';
+import { DeviceStatusRequest, UiEventRequest, AddMetricRequest } from '../interfaces/metrics';
 const router = express.Router();
-
-// Define types for the request bodies
-interface DeviceStatusRequest {
-    metricName: string;
-    value: string;
-    status: string;
-}
-
-interface UiEventRequest {
-    name: string;
-    value: string;
-}
-
-interface AddMetricRequest {
-    key: string;
-}
 
 // Define a route for /api/Metrics/device-status
 router.post('/device-status', (req: Request<{}, {}, DeviceStatusRequest>, res: Response) => {
