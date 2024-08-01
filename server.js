@@ -1,7 +1,13 @@
 const express = require('express');
-const cors = require('cors'); // Import the cors package
+const cors = require('cors');
 const app = express();
 const PORT = 5050;
+
+// Import routes
+const metricsRoutes = require('./routes/metrics/metrics');
+const kioskRoutes = require('./routes/kiosk/kiosk');
+const ingenicoRoutes = require('./routes/ingenico/ingenico');
+const logsRoutes = require('./routes/logs/logs');
 
 // Use the cors middleware to allow all origins
 app.use(cors());
@@ -9,79 +15,12 @@ app.use(cors());
 // Use express.json() middleware to parse JSON payloads
 app.use(express.json());
 
-// Define a route for /api/ingenico
-app.get('/api/ingenico', (req, res) => {
-    res.json(true); // Respond with true
-});
+// Use imported routes with path prefixes
+app.use('/api/Metrics', metricsRoutes);
+app.use('/api/Kiosk', kioskRoutes);
+app.use('/api', ingenicoRoutes);
+app.use('/api', logsRoutes);
 
-// Define a route for /api/Kiosk/is-internet-active
-app.get('/api/Kiosk/is-internet-active', (req, res) => {
-    res.json(true); // Respond with true
-});
-
-// Define a route for /api/Kiosk/is-service-active
-app.get('/api/Kiosk/is-service-active', (req, res) => {
-    res.json(true); // Respond with true
-});
-
-// Define a route for /api/Metrics/device-status
-app.post('/api/Metrics/device-status', (req, res) => {
-    // Extract the payload from the request body
-    const { metricName, value, status } = req.body;
-    console.log('/api/Metrics/device-status', req.body);
-
-    if (metricName && value && status) {
-        // Send a response with status code 200
-        res.status(200).json({ message: 'Device status received successfully' });
-    } else {
-        // If validation fails, send a 400 Bad Request response
-        res.status(400).json({ error: 'Invalid payload' });
-    }
-});
-
-// Define a route for /api/Metrics/ui-event
-app.post('/api/Metrics/ui-event', (req, res) => {
-    // Extract the payload from the request body
-    const { name, value } = req.body;
-    console.log('/api/Metrics/ui-event', req.body);
-
-    if (name && value) {
-        // Send a response with status code 200
-        res.status(200).json({ message: 'Device status received successfully' });
-    } else {
-        // If validation fails, send a 400 Bad Request response
-        res.status(400).json({ error: 'Invalid payload' });
-    }
-});
-
-// Define a route for /api/Logs
-app.post('/api/Logs', (req, res) => {
-    // Extract the payload from the request body
-    const { Message, StackFrame, Type } = req.body;
-    console.log('/api/Logs', req.body);
-
-    if (Message && StackFrame && Type) {
-        // Send a response with status code 200
-        res.status(200).json({ message: 'Device status received successfully' });
-    } else {
-        // If validation fails, send a 400 Bad Request response
-        res.status(400).json({ error: 'Invalid payload' });
-    }
-});
-
-// Define a route for /api/Metrics/session/add-metric/:dataType
-app.post('/api/Metrics/session/add-metric/:dataType', (req, res) => {
-    const { key } = req.body;
-    console.log(`/api/Metrics/session/add-metric/${req.params.dataType}`, req.body);
-
-    if (key) {
-        // Send a response with status code 200
-        res.status(200).json({ message: 'Device status received successfully' });
-    } else {
-        // If validation fails, send a 400 Bad Request response
-        res.status(400).json({ error: 'Invalid payload' });
-    }
-});
 
 // Start the server
 app.listen(PORT, () => {
