@@ -9,7 +9,7 @@ interface LogRequest {
 }
 
 // Define a route for /api/logs
-router.post("/Logs", (req: Request<{}, {}, LogRequest>, res: Response) => {
+router.post("/", (req: Request<{}, {}, LogRequest>, res: Response) => {
     const { Message, StackFrame, Type } = req.body;
     console.log("/api/Logs", req.body);
 

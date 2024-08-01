@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import metricsRoutes from './routes/metrics/metrics';
-import kioskRoutes from './routes/kiosk/kiosk';
 import ingenicoRoutes from './routes/ingenico/ingenico';
+import kioskRoutes from './routes/kiosk/kiosk';
 import logsRoutes from './routes/logs/logs';
+import metricsRoutes from './routes/metrics/metrics';
 
 const app = express();
 const PORT = 5050;
@@ -15,10 +15,10 @@ app.use(cors());
 app.use(express.json());
 
 // Use imported routes with path prefixes
-app.use('/api/Metrics', metricsRoutes);
+app.use('/api/ingenico', ingenicoRoutes);
 app.use('/api/Kiosk', kioskRoutes);
-app.use('/api', ingenicoRoutes);
-app.use('/api', logsRoutes);
+app.use('/api/Logs', logsRoutes);
+app.use('/api/Metrics', metricsRoutes);
 
 // Start the server
 app.listen(PORT, () => {
