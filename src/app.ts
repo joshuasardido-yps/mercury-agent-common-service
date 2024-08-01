@@ -1,13 +1,12 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
+import metricsRoutes from './routes/metrics/metrics';
+import kioskRoutes from './routes/kiosk/kiosk';
+import ingenicoRoutes from './routes/ingenico/ingenico';
+import logsRoutes from './routes/logs/logs';
+
 const app = express();
 const PORT = 5050;
-
-// Import routes
-const metricsRoutes = require('./routes/metrics/metrics');
-const kioskRoutes = require('./routes/kiosk/kiosk');
-const ingenicoRoutes = require('./routes/ingenico/ingenico');
-const logsRoutes = require('./routes/logs/logs');
 
 // Use the cors middleware to allow all origins
 app.use(cors());
@@ -20,7 +19,6 @@ app.use('/api/Metrics', metricsRoutes);
 app.use('/api/Kiosk', kioskRoutes);
 app.use('/api', ingenicoRoutes);
 app.use('/api', logsRoutes);
-
 
 // Start the server
 app.listen(PORT, () => {
