@@ -6,15 +6,10 @@ router.get("/session/start", (req: Request, res: Response) => {
 });
 
 router.get("/session/end/:isCustomerSession", (req: Request, res: Response) => {
-    const { isCustomerSession } = req.params;
-
-    const isSessionsNotConvertedToRaiseAlertExceeded = false;
-    const shouldRestartKiosk = isCustomerSession === "true";
-
     res.status(200).json({
-        isSessionsNotConvertedToRaiseAlertExceeded,
-        shouldRestartKiosk,
-    });
+        isSessionsNotConvertedToRaiseAlertExceeded: false,
+        shouldRestartKiosk: false,
+      });
 });
 
 export default router;

@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 const router = express.Router();
 
 router.get('/', (req: Request, res: Response) => {
-    res.json(true);
+    res.status(200).json(true);
 });
 
 export default router;
