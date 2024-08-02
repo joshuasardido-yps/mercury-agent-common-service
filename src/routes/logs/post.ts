@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { LogRequest } from "../interfaces/logs";
+import { LogRequest } from "../../types/logs";
 const router = express.Router();
 
 router.post("/", (req: Request<{}, {}, LogRequest>, res: Response) => {

@@ -1,11 +1,11 @@
 ### Mercury Agent Common Service Stub Server
 
 ``` shell
-npm install
+pnpm install
 ```
 
 ``` shell
-npm run start
+pnpm start
 ```
 
 Server is running on http://localhost:5050
